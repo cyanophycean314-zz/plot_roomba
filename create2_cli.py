@@ -131,7 +131,6 @@ class TetheredDriveApp():
         return getDecodedBytes(2, ">h")
 
     def getCommands(self):
-        cmdlen = 10
         while True:
             cmd = raw_input('> ')
             if (cmd == 'quit'):
@@ -154,7 +153,10 @@ class TetheredDriveApp():
             elif cmd == 'reset': # Reset
                 self.sendCommandASCII('7')
             else:
-                self.sendCommandASCII(cmd)
+                try:
+                    self.sendCommandASCII(cmd)
+                except ValueError:
+                    print 'Invalid command'
         print 'Done'
 
     # A handler for keyboard events. Feel free to add more!
