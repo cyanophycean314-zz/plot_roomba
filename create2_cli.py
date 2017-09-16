@@ -131,6 +131,7 @@ class TetheredDriveApp():
         return getDecodedBytes(2, ">h")
 
     def getCommands(self):
+        cmdlen = 10
         while True:
             cmd = raw_input('> ')
             if (cmd == 'quit'):
@@ -150,7 +151,7 @@ class TetheredDriveApp():
                 self.sendCommandASCII('143')
             elif cmd == 'b': # Beep
                 self.sendCommandASCII('140 3 1 64 16 141 3')
-            elif cmd == 'r': # Reset
+            elif cmd == 'reset': # Reset
                 self.sendCommandASCII('7')
             else:
                 self.sendCommandASCII(cmd)
