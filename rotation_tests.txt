@@ -1,0 +1,16 @@
+commands passed:
+
+137 0 80 0 1
+137 0 80 255 255
+
+(also tried speed 100 but low precision on timings)
+
+360 degrees takes 8.65 seconds
+
+0.024 seconds per degrees
+
+So angle function has to take a = arctan(delta y / delta x) - orig_angle.
+
+If a <= 180, turn counterclockwise for 0.024 * degree seconds
+
+Else if a > 180, turn clockwise for 0.024 * (360 - degree) seconds
