@@ -92,17 +92,12 @@ class TetheredDriveApp():
             if connection is not None:
                 connection.write(command)
             else:
-                tkMessageBox.showerror('Not connected!', 'Not connected to a robot!')
                 print "Not connected."
         except serial.SerialException:
             print "Lost connection"
-            tkMessageBox.showinfo('Uh-oh', "Lost connection to the robot!")
             connection = None
 
         print ' '.join([ str(ord(c)) for c in command ])
-        self.text.insert(END, ' '.join([ str(ord(c)) for c in command ]))
-        self.text.insert(END, '\n')
-        self.text.see(END)
 
     # getDecodedBytes returns a n-byte value decoded using a format string.
     # Whether it blocks is based on how the connection was set up.
@@ -113,7 +108,6 @@ class TetheredDriveApp():
             return struct.unpack(fmt, connection.read(n))[0]
         except serial.SerialException:
             print "Lost connection"
-            tkMessageBox.showinfo('Uh-oh', "Lost connection to the robot!")
             connection = None
             return None
         except struct.error:
@@ -142,7 +136,24 @@ class TetheredDriveApp():
             if (cmd == 'quit'):
                 self.sendCommandASCII('128')
                 break
-            self.sendCommandASCII(cmd)
+            elif (cmd == 'stop'):
+                self.sendCommandASCII('145 0 0 0 0')
+            elif cmd == 'p': # Passive
+                self.sendCommandASCII('128')
+            elif cmd == 's': # Safe
+                self.sendCommandASCII('131')
+            elif cmd == 'f': # Full
+                self.sendCommandASCII('132')
+            elif cmd == 'c': # Clean
+                self.sendCommandASCII('135')
+            elif cmd == 'd': # Dock
+                self.sendCommandASCII('143')
+            elif cmd == 'b': # Beep
+                self.sendCommandASCII('140 3 1 64 16 141 3')
+            elif cmd == 'r': # Reset
+                self.sendCommandASCII('7')
+            else:
+                self.sendCommandASCII(cmd)
         print 'Done'
 
     # A handler for keyboard events. Feel free to add more!
@@ -218,21 +229,28 @@ class TetheredDriveApp():
 
         if connection is not None:
             print 'Oops, Already connected'
-            return
+            return False
 
         try:
             ports = self.getSerialPorts()
-            port = raw_input('Enter COM port to open.\nAvailable options:\n' + '\n'.join(ports))
+            port = raw_input('Enter COM port to open.\nAvailable options:\n' + '\n'.join(ports) + '\n')
         except EnvironmentError:
             port = raw_input('Enter COM port to open. (environment error)')
 
+        # Default to first choice in ports
+        if len(port) == 0 and len(ports) > 0:
+            port = ports[0]
         if port is not None:
             print "Trying " + str(port) + "... "
             try:
                 connection = serial.Serial(port, baudrate=115200, timeout=1)
                 print "Connected!"
+                return True
             except:
                 print "Failed."
+                return False
+        print 'Idk what happened'
+        return False
 
     def getSerialPorts(self):
         """Lists serial ports
