@@ -23,7 +23,7 @@ class RoombaNavigate():
     prev_data = ''
     # seconds_per_degree = 0.024  #found experimentally
     seconds_per_degree = 0.0235  #found sketchily
-    seconds_per_dist_unit = 0.05   #tuned for best experience
+    seconds_per_dist_unit = 0.15   #tuned for best experience
     def __init__(self):
         print 'start'
 
@@ -92,24 +92,24 @@ class RoombaNavigate():
 
     def plot_xy(self, points):
         self.move_to_origin()
-        lastx, lasty = 0, 0
+        self.lastx, self.lasty = 0, 0
         for x, y in points:
-            self.move(lastx, lasty, x, y)
+            self.move(x, y)
 
-    def move(self, lastx, lasty, x, y):
-        # new_theta = math.atan2(y - lasty, x - lastx)
-        diffx, diffy = x - lastx, y - lasty
-        print '1: ', lastx, lasty, x, y
+    def move(self, x, y):
+        diffx, diffy = x - self.lastx, y - self.lasty
+        print '1: ', self.lastx, self.lasty, x, y
         print '2: ', diffx, diffy
-        dotproduct = diffx * math.cos(self.theta) + diffy * math.sin(self.theta)
-        print '3: ', dotproduct
+        alpha = math.atan2(diffy, diffx)
+        print '3: ', alpha
         dist = math.sqrt(diffx ** 2 + diffy ** 2)
         print '4: ', dist
         if dist == 0:
             return
-        diff_theta = math.acos(dotproduct / dist)
-        print '5: ', diff_theta
-        self.theta += diff_theta
+        diff_theta = alpha - self.theta
+        print '5: ', math.degrees(diff_theta)
+        print '6: ', math.degrees(self.theta)
+        self.theta = alpha
         self.lastx, self.lasty = x, y
         self.rotate(diff_theta)
         self.travel(dist)
@@ -118,11 +118,10 @@ class RoombaNavigate():
         global app
 
         degrees = math.degrees(angle)
-        if angle > 180:
-            angle -= 360
-        elif angle < -180:
-            angle += 360
-
+        if degrees < -180:
+            degrees += 360
+        elif degrees > 180:
+            degrees -= 360
         print 'rotate ' + str(degrees) + ' degrees'
         if degrees > 0:
             print 'time: ' + str(degrees * self.seconds_per_degree)
