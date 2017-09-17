@@ -6,16 +6,35 @@
 import math
 #import create2cli
 import urllib
+import time
 
 MAGIC_URL = 'https://www.wolframcloud.com/objects/user-0bd94b55-72c1-466a-8c79-c0ad96a59807/output?y=1'
 
 class RoombaNavigate():
     position = (0,0)    #in units of scaling
     theta = 0           #radians from x-axis
+    prev_data = ''
+
     def __init__(self):
         print 'start'
 
-    def download_points(self):
+    def start(self):
+        while True:
+            try:
+                file_handler = urllib.urlopen(MAGIC_URL)
+            except IOError:
+                print 'Connection Error: could not connect'
+                continue
+            data = file_handler.readline()
+            if data != prev_data:
+                prev_data = data
+                points = self.download_points(data)
+                self.plot_xy(points)
+                self.move_to_origin()
+            time.sleep(2)
+        
+
+    def download_points(self, data):
         try:
             file_handler = urllib.urlopen(MAGIC_URL)
         except IOError:
@@ -62,4 +81,4 @@ class RoombaNavigate():
 
 if __name__ == "__main__":
     roomba = RoombaNavigate()
-    roomba.download_points()
+    roomba.start()
