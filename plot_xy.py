@@ -6,7 +6,6 @@
 import math
 import create2_cli
 import urllib
-import sys
 import time
 import sys
 
@@ -101,9 +100,9 @@ class RoombaNavigate():
 
         degrees = math.degrees(angle)
         if angle > 180:
-            angle -= 180
+            angle -= 360
         elif angle < -180:
-            angle += 180
+            angle += 360
 
         print 'rotate ' + str(degrees) + ' degrees'
         if degrees > 0:
