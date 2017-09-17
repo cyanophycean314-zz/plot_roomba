@@ -137,7 +137,7 @@ class TetheredDriveApp():
                 self.sendCommandASCII('128')
                 break
             elif (cmd == 'stop'):
-                self.sendCommandASCII('145 0 0 0 0')
+                self.stop()
             elif cmd == 'p': # Passive
                 self.sendCommandASCII('128')
             elif cmd == 's': # Safe
@@ -226,6 +226,9 @@ class TetheredDriveApp():
             if cmd != self.callbackKeyLastDriveCommand:
                 self.sendCommandRaw(cmd)
                 self.callbackKeyLastDriveCommand = cmd
+
+    def stop(self):
+        self.sendCommandASCII('145 0 0 0 0')
 
     def onConnect(self):
         global connection
