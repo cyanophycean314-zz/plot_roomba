@@ -1,0 +1,152 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4263,        144]
+NotebookOptionsPosition[      3638,        120]
+NotebookOutlinePosition[      3995,        136]
+CellTagsIndexPosition[      3952,        133]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"CloudGet", "[", 
+  RowBox[{"CloudObject", "[", "\"\<plotroomba\>\"", "]"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"CloudGet", "[", 
+  RowBox[{"CloudObject", "[", "\"\<polarplotroomba\>\"", "]"}], 
+  "]"}]}], "Input",
+ CellChangeTimes->{{3.714605302190366*^9, 3.714605311055396*^9}, {
+  3.714605617570673*^9, 3.714605620039452*^9}}],
+
+Cell[BoxData["\[IndentingNewLine]"], "Input",
+ CellChangeTimes->{{3.7146579203682003`*^9, 3.71465792240379*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Plot", "[", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "360000"], 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["x", "4"], "-", 
+       RowBox[{"8000", 
+        SuperscriptBox["x", "2"]}]}], ")"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "0", ",", "100"}], "}"}]}], "]"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7146567452394333`*^9, 3.7146567472432203`*^9}, {
+  3.714656915338808*^9, 3.714656924697686*^9}, {3.714657935585547*^9, 
+  3.7146579357683773`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"PlotRoomba", "[", 
+  RowBox[{
+   RowBox[{
+    FractionBox["1", "360000"], 
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["x", "4"], "-", 
+      RowBox[{"8000", 
+       SuperscriptBox["x", "2"]}]}], ")"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "100"}], "}"}], ",", "0.5"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7146579412767067`*^9, 3.71465794174682*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{3.714656909382213*^9}],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"40", 
+    RowBox[{"Sin", "[", 
+     FractionBox[
+      RowBox[{"2", "\[Pi]", " ", "x"}], "80"], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "80"}], "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.714648964979333*^9, 3.714649058373312*^9}, 
+   3.714649843560893*^9, {3.714656017996627*^9, 3.714656020192729*^9}, 
+   3.714656742120574*^9}],
+
+Cell[BoxData[
+ RowBox[{"PlotRoomba", "[", 
+  RowBox[{
+   RowBox[{"40", 
+    RowBox[{"Sin", "[", 
+     FractionBox[
+      RowBox[{"2", "\[Pi]", " ", "x"}], "80"], "]"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "80"}], "}"}], ",", "0.3"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.714657928411325*^9, 3.714657929129922*^9}}],
+
+Cell[BoxData[
+ RowBox[{"PolarPlot", "[", 
+  RowBox[{
+   RowBox[{"15", 
+    SuperscriptBox["\[Theta]", 
+     RowBox[{"1", "/", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Theta]", ",", "0", ",", 
+     RowBox[{"2", "\[Pi]"}]}], "}"}]}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"PolarPlotRoomba", "[", 
+  RowBox[{
+   RowBox[{"15", 
+    SuperscriptBox["\[Theta]", 
+     RowBox[{"1", "/", "2"}]]}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\[Theta]", ",", "0", ",", 
+     RowBox[{"2", "\[Pi]"}]}], "}"}], ",", "0.3"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7146579519459867`*^9, 3.714657964616724*^9}}]
+},
+WindowSize->{808, 598},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 361, 8, 54, "Input"],
+Cell[922, 30, 112, 1, 54, "Input"],
+Cell[1037, 33, 540, 16, 73, "Input"],
+Cell[1580, 51, 339, 11, 50, "Input"],
+Cell[1922, 64, 196, 3, 117, "Input"],
+Cell[2121, 69, 68, 1, 32, "Input"],
+Cell[2192, 72, 417, 11, 50, "Input"],
+Cell[2612, 85, 271, 8, 50, "Input"],
+Cell[2886, 95, 146, 2, 75, "Input"],
+Cell[3035, 99, 255, 8, 35, "Input"],
+Cell[3293, 109, 341, 9, 35, "Input"]
+}
+]
+*)
+
